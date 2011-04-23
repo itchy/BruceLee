@@ -20,25 +20,23 @@ The gist of how to play the game as a human is commented in the top of the game.
 2 - put your username and password into the twitter.yml file
 3 - goto the game site and monitor what is happening (your session is stored by your login, so you can see what 
 		your bot is doing, this is important ) http://reddirtrubyconf.com/game/
-4 - game.rb line 142 - uncomment || statment - it should look like below
-		if me.programs.empty? || (enemy.programs[0] && enemy.programs[0].count("A")==0)
-		-- this allows the bot to win before it has extra HP's, but fails once the computer can get healing 
-5 - comment out game.rb lines 178 & 179		
+4 - comment out game.rb lines 178 & 179		
 		#  @agent.get("http://reddirtrubyconf.com/game/encounter?move=HP")
     #  pick_opponet
     -- This will cause the bot to stop each time you level up.  It will prompt you to MAKE A DECISION
 			-- pick improve HP the first two times it stops (This is done in your browser see __FILE__ line 15 #3)
 			-- pick improve Attack next three times (Also done in your browser) 9 is a high as it can get
 		-- after making the decision in your browser, restart the bot
-6 - once you have the option to pick healing from Matz, comment out || statement in line 143			
-		if me.programs.empty? #|| (enemy.programs[0] && enemy.programs[0].count("A")==0)
-		-- this compensates for the computer being able to select healing, now you just win by nature of
-			 having increased HP's
-7 - once your attack is +3 and step 6 has occured (notice, you will probably reach +3 attack before step 6)
+5 - once your attack is +3
 		uncomment lines 178 & 179
 		@agent.get("http://reddirtrubyconf.com/game/encounter?move=HP")
     pick_opponet
 		-- this will cause bot to always select improve HP from Matz
-8 - at this point, just let Bruce fight.  He should kick some serious back side.  Eventually the stack 
+6 - at this point, just let Bruce fight.  He should kick some serious back side.  Eventually the stack 
 		will get too deep and cause the bot to crash - just restart your bot
+		
+7 - if you want to add the logic for when to pick attack and when to pick +HP, go for it
+8 - Also once your HP is +14 you no longer need to run -- in theory I have not tested this
+9 - If you keep up with these stated just remember to get them from the web site or write them to a file
+    because the stack will get too deep and Bruce will crash, causing variables to get rest.	
 				

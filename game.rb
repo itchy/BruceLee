@@ -138,8 +138,8 @@ class Dragon
     enemy = Player.new(enemy) if enemy  
     
     if me && enemy
-      # HERE -- TURN OFF || ONCE HEALING STARTS    
-      if me.programs.empty? # || (enemy.programs[0] && enemy.programs[0].count("A")==0) 
+      # HERE -- comment #|| ONCE HEALING STARTS -- SSJ no longer necessary 
+      if me.programs.empty? || (enemy.programs[0] && enemy.programs[0].count("D")==3) 
         # reload
         load_programs(@game)
       else
