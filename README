@@ -1,0 +1,44 @@
+Bruce Lee is a bot that is used to defeat the Enter the Matrix game on the Red Dirt Ruby Conference 2 website.
+
+Many Thanks to Dan Lucraft and Jordan Byron for sharing their code and helping me with my first bot.
+
+This bot uses Mechanize to do its botting...
+
+You have to have a valid rdrc2 login (i.e. have attended to conference) to access the Enter the Matrix game, 
+but anyone can view the leaderboard => http://reddirtrubyconf.com/game/leaderboard
+
+The gist of how to play the game as a human is commented in the top of the game.rb file.
+
+***********   NOTE   *********************
+  Their is a small chance your bot may loose a battle in the first few rounds, 
+	if the enemy gets 0 DDD programs before your HP's increase above the damage done
+	in the final round.  If this happens just run your bot again 
+
+
+***********   BEFORE USING THIS BOT FOLLOW THESE STEPS  ******************
+1 - make sure you can use your twitter username and password to log into RDRC2 website
+2 - put your username and password into the twitter.yml file
+3 - goto the game site and monitor what is happening (your session is stored by your login, so you can see what 
+		your bot is doing, this is important ) http://reddirtrubyconf.com/game/
+4 - game.rb line 142 - uncomment || statment - it should look like below
+		if me.programs.empty? || (enemy.programs[0] && enemy.programs[0].count("A")==0)
+		-- this allows the bot to win before it has extra HP's, but fails once the computer can get healing 
+5 - comment out game.rb lines 178 & 179		
+		#  @agent.get("http://reddirtrubyconf.com/game/encounter?move=HP")
+    #  pick_opponet
+    -- This will cause the bot to stop each time you level up.  It will prompt you to MAKE A DECISION
+			-- pick improve HP the first two times it stops (This is done in your browser see __FILE__ line 15 #3)
+			-- pick improve Attack next three times (Also done in your browser) 9 is a high as it can get
+		-- after making the decision in your browser, restart the bot
+6 - once you have the option to pick healing from Matz, comment out || statement in line 143			
+		if me.programs.empty? #|| (enemy.programs[0] && enemy.programs[0].count("A")==0)
+		-- this compensates for the computer being able to select healing, now you just win by nature of
+			 having increased HP's
+7 - once your attack is +3 and step 6 has occured (notice, you will probably reach +3 attack before step 6)
+		uncomment lines 178 & 179
+		@agent.get("http://reddirtrubyconf.com/game/encounter?move=HP")
+    pick_opponet
+		-- this will cause bot to always select improve HP from Matz
+8 - at this point, just let Bruce fight.  He should kick some serious back side.  Eventually the stack 
+		will get too deep and cause the bot to crash - just restart your bot
+				

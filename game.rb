@@ -138,7 +138,6 @@ class Dragon
     enemy = Player.new(enemy) if enemy  
     
     if me && enemy
-      p enemy.inspect
       # HERE -- TURN OFF || ONCE HEALING STARTS    
       if me.programs.empty? # || (enemy.programs[0] && enemy.programs[0].count("A")==0) 
         # reload
@@ -157,7 +156,6 @@ class Dragon
 
     
       if me && enemy
-        puts "GO AGAIN"
         moves
       else
         battle_over
@@ -175,8 +173,7 @@ class Dragon
     matz = @game.search("div[id=moves]/p").to_s[/Ruby mastery/]
     if matz
       puts "\e[0;32mMAKE A DECISION\e[0m"
-      # attack is at 9, just pick HP
-      # HERE
+      # Once attack is at 9, AND line 142 has been adjusted just pick HP by commenting out lines 178 & 179
       # COMMENT THE NEXT TWO LINES OUT AT BEGINING OF GAME!    
       @agent.get("http://reddirtrubyconf.com/game/encounter?move=HP")
       pick_opponet
@@ -188,7 +185,6 @@ class Dragon
   
   def run
     page = @agent.get("http://reddirtrubyconf.com/game/encounter?move=run")
-    # page = page.link_with(:href => /encounter/).click
     pick_opponet
   end
   
